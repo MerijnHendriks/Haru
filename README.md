@@ -14,4 +14,5 @@ See [getting started](docs/getstarted.md) for more information.
 
 ## License
 
-[NCSA](https://choosealicense.com/licenses/ncsa/)
+- [project](https://github.com/MerijnHendriks/Haru/blob/main/LICENSE)
+- [3rdparty](https://github.com/MerijnHendriks/Haru/blob/main/Docs/licenses-thirdparty.md)
