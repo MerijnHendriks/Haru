@@ -16,7 +16,6 @@ namespace Haru.Modules.Patches
             var type = PatchConstants.EftTypes.Single(x => x.GetMethod(methodName, flags) != null);
 
             _succeed = type.GetFields().Single(x => x.GetType() == typeof(bool));
-
             OriginalMethod = type.GetMethod(methodName, flags);
         }
 
