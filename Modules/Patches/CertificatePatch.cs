@@ -4,17 +4,16 @@ using Haru.Modules.Reflection;
 
 namespace Haru.Modules.Patches
 {
-	public class CertificatePatch : ModulePatch
+	public class CertificatePatch : PrefixPatch
 	{
-		public CertificatePatch() : base()
+		public CertificatePatch() : base("certificate.patches.haru")
 		{
-			TargetMethod = ModuleConstants.EftTypes
+			OriginalMethod = PatchConstants.EftTypes
 				.Single(x => x.BaseType == typeof(CertificateHandler))
-				.GetMethod("ValidateCertificate", ModuleConstants.PrivateFlags);
+				.GetMethod("ValidateCertificate", PatchConstants.PrivateFlags);
 		}
 
-		[PatchPrefix]
-		protected static bool PatchPrefix(ref bool __result)
+		protected static bool Patch(ref bool __result)
 		{
 			__result = true;
 			return false;

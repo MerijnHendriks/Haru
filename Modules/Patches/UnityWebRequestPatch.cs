@@ -4,16 +4,15 @@ using Haru.Modules.Reflection;
 
 namespace Haru.Modules.Patches
 {
-    public class UnityWebRequestPatch : ModulePatch
+    public class UnityWebRequestPatch : PostfixPatch
     {
-        public UnityWebRequestPatch() : base()
+        public UnityWebRequestPatch() : base("unitywebrequest.patches.haru")
         {
-            TargetMethod = typeof(UnityWebRequestTexture)
+            OriginalMethod = typeof(UnityWebRequestTexture)
                 .GetMethod(nameof(UnityWebRequestTexture.GetTexture), new[] { typeof(string) });
         }
 
-        [PatchPostfix]
-        protected static void PatchPostfix(UnityWebRequest __result)
+        protected static void Patch(UnityWebRequest __result)
         {
             __result.certificateHandler = new FakeCertificateHandler();
         }

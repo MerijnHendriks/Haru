@@ -4,20 +4,19 @@ using Haru.Modules.Reflection;
 
 namespace Haru.Modules.Patches
 {
-    public class WebSocketPatch : ModulePatch
+    public class WebSocketPatch : PostfixPatch
     {
-        public WebSocketPatch() : base()
+        public WebSocketPatch() : base("websocket.patches.haru")
         {
-            var types = ModuleConstants.EftTypes;
+            var types = PatchConstants.EftTypes;
             var targetInterface = types.Single(x => x.IsInterface && x == typeof(IConnectionHandler));
 
-            TargetMethod = types
+            OriginalMethod = types
                 .Single(x => targetInterface.IsAssignableFrom(x) && x.IsAbstract && !x.IsInterface)
-                .GetMethods(ModuleConstants.PrivateFlags).Single(x => x.ReturnType == typeof(Uri));
+                .GetMethods(PatchConstants.PrivateFlags).Single(x => x.ReturnType == typeof(Uri));
         }
 
-        [PatchPostfix]
-        protected static Uri PatchPostfix(Uri __instance)
+        protected static Uri Patch(Uri __instance)
         {
             return new Uri(__instance.ToString().Replace("wss:", "ws:"));
         }

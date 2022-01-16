@@ -6,17 +6,16 @@ using Haru.Modules.Reflection;
 
 namespace Haru.Modules.Patches
 {
-    public class CheckSinglePatch : ModulePatch
+    public class CheckSinglePatch : PrefixPatch
     {
-        public CheckSinglePatch() : base()
+        public CheckSinglePatch() : base("consistencysingle.patches.haru")
         {
-            TargetMethod = ModuleConstants.FilesCheckerTypes
+            OriginalMethod = PatchConstants.FilesCheckerTypes
                 .Single(x => x.Name == "ConsistencyController")
                 .GetMethods().Single(x => x.Name == "EnsureConsistencySingle" && x.ReturnType == typeof(Task<ICheckResult>));
         }
 
-        [PatchPrefix]
-        protected static bool PatchPrefix(ref object __result)
+        protected static bool Patch(ref object __result)
         {
             __result = Task.FromResult<ICheckResult>(new FakeFileCheckerResult());
             return false;

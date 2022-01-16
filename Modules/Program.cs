@@ -8,7 +8,7 @@ namespace Haru.Modules
     {
         public static void Main()
         {
-            var patches = new List<ModulePatch>()
+            var patches = new List<APatch>()
             {
                 new BattlEyePatch(),
                 new CheckMultiplePatch(),
