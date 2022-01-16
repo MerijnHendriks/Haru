@@ -1,0 +1,10 @@
+# ---> Haru
+Modules/References/Unity/
+Modules/References/Eft/
+Logs
+
+# ---> Visual Studio
+.vs
+bin
+obj
+*.user

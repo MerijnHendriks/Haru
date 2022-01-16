@@ -1,0 +1,142 @@
+{
+	"folders": [
+		{
+			"path": "."
+		}
+	],
+	"settings": {
+		"window.title": "Haru Project"
+	},
+	"extensions": {
+		"recommendations": [
+			"hediet.vscode-drawio",
+			"ms-dotnettools.csharp"
+		]
+	},
+	"tasks": {
+		"version": "2.0.0",
+		"tasks": [
+			{
+				"label": "setup: launcher",
+				"type": "shell",
+				"command": "dotnet restore Launcher/Launcher.csproj",
+				"problemMatcher": ["$msCompile"]
+			},
+			{
+				"label": "setup: modules",
+				"type": "shell",
+				"command": "dotnet restore Modules/Modules.csproj",
+				"problemMatcher": ["$msCompile"]
+			},
+			{
+				"label": "setup: server",
+				"type": "shell",
+				"command": "dotnet restore Server/Server.csproj",
+				"problemMatcher": ["$msCompile"]
+			},
+			{
+				"label": "build: launcher",
+				"type": "shell",
+				"linux": {
+					"command": "dotnet publish Launcher/Launcher.csproj /p:PublishProfile=Launcher/Properties/PublishProfiles/linux-x64.pubxml"
+				},
+				"osx": {
+					"command": "dotnet publish Launcher/Launcher.csproj /p:PublishProfile=Launcher/Properties/PublishProfiles/osx-x64.pubxml"
+				},
+				"windows": {
+					"command": "dotnet publish Launcher/Launcher.csproj /p:PublishProfile=Launcher/Properties/PublishProfiles/win-x64.pubxml"
+				},
+				"problemMatcher": ["$msCompile"]
+			},
+			{
+				"label": "setup: modules",
+				"type": "shell",
+				"command": "dotnet restore Modules/Modules.csproj",
+				"problemMatcher": ["$msCompile"]
+			},
+			{
+				"label": "build: server",
+				"type": "shell",
+				"linux": {
+					"command": "dotnet publish Server/Server.csproj /p:PublishProfile=Server/Properties/PublishProfiles/linux-x64.pubxml"
+				},
+				"osx": {
+					"command": "dotnet publish Server/Server.csproj /p:PublishProfile=Server/Properties/PublishProfiles/osx-x64.pubxml"
+				},
+				"windows": {
+					"command": "dotnet publish Server/Server.csproj /p:PublishProfile=Server/Properties/PublishProfiles/win-x64.pubxml"
+				},
+				"problemMatcher": ["$msCompile"]
+			},
+			{
+				"label": "build: modules",
+				"type": "shell",
+				"command": "dotnet build Modules/Modules.csproj --configuration Release",
+				"problemMatcher": ["$msCompile"]
+			},
+			{
+				"label": "setup",
+				"problemMatcher": [],
+				"dependsOn": [
+					"setup: server",
+					"setup: modules",
+					"setup: launcher"
+				]
+			},
+			{
+				"label": "build",
+				"problemMatcher": [],
+				"group": {
+					"kind": "build",
+					"isDefault": true
+				},
+				"dependsOn": [
+					"build: server",
+					"build: modules",
+					"build: launcher"
+				]
+			}
+		]
+	},
+	"launch": {
+		"version": "0.2.0",
+		"configurations": [
+			{
+				"name": "Launcher",
+				"preLaunchTask": "build: launcher",
+				"type": "coreclr",
+				"request": "launch",
+				"cwd": "${workspaceFolder}/Launcher",
+				"console": "externalTerminal",
+				"program": "",
+				"linux": {
+					"program": "bin/Debug/net6.0/linux-x64/Launcher.dll",
+				},
+				"osx": {
+					"program": "bin/Debug/net6.0/osx-x64/Launcher.dll",
+				},
+				"windows": {
+					"program": "bin/Debug/net6.0/win-x64/Launcher.dll",
+				}
+			},
+			{
+				"name": "Server",
+				"preLaunchTask": "build: server",
+				"type": "coreclr",
+				"request": "launch",
+				"cwd": "${workspaceFolder}/Server",
+				"console": "externalTerminal",
+				"program": "",
+				"linux": {
+					"program": "bin/Debug/net6.0/linux-x64/Server.dll",
+				},
+				"osx": {
+					"program": "bin/Debug/net6.0/osx-x64/Server.dll",
+				},
+				"windows": {
+					"program": "bin/Debug/net6.0/win-x64/Server.dll",
+				}
+			}
+		]
+	}
+}

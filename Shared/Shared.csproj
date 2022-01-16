@@ -1,0 +1,13 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+	<RootNamespace>Haru.Shared</RootNamespace>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Vendor\websocket-sharp\websocket-sharp.csproj" />
+    <ProjectReference Include="..\Vendor\zlib.net\zlib.net.csproj" />
+  </ItemGroup>
+
+</Project>
