@@ -21,8 +21,6 @@ namespace Haru.Launcher
             // set launch info
             var arguments = new string[]
             {
-                // taken from processhacker
-                "-force-gfx-jobs native",
                 // user account token
                 $"-token={token}",
                 // server config
