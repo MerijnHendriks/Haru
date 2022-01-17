@@ -81,6 +81,30 @@ for multiple IDE's (Visual Studio Code, Visual Studio 2022).
 
 Minimal CLI-based game launcher
 
+##### Launch process
+
+The game is started using the appropiate launch arguments with high priority.
+
+##### EFT launch arguments
+
+**Name**  | **Description**
+--------- | ------------------------
+`-token`  | Account token
+`-config` | EFT client configuration
+
+##### EFT client configuration
+
+```json
+{
+    "backendurl": "https://prod.escapefromtarkov.com",
+    "version": "live"
+}
+```
+
+- `backendurl`: main server address.
+   The game can connect without ssl connection using the `http` protocol
+- `version`: game channel (`live`, `dev`, etc)
+
 #### Modules
 
 Runtime patches to allow the game to reach the main menu
