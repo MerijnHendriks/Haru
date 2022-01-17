@@ -6,7 +6,7 @@ namespace Haru.Modules.Patches
 {
     public class WebSocketPatch : PostfixPatch
     {
-        public WebSocketPatch() : base("websocket.patches.haru")
+        public WebSocketPatch() : base("com.haru.websocket")
         {
             var types = PatchConstants.EftTypes;
             var targetInterface = types.Single(x => x.IsInterface && x == typeof(IConnectionHandler));

@@ -9,7 +9,7 @@ namespace Haru.Modules.Patches
     {
         private static FieldInfo _succeed;
 
-        public BattlEyePatch() : base("battleye.patches.haru")
+        public BattlEyePatch() : base("com.haru.battleye")
         {
             var methodName = "RunValidation";
             var flags = PatchConstants.PublicFlags;

@@ -6,7 +6,7 @@ namespace Haru.Modules.Patches
 {
 	public class CertificatePatch : PrefixPatch
 	{
-		public CertificatePatch() : base("certificate.patches.haru")
+		public CertificatePatch() : base("com.haru.certificate")
 		{
 			OriginalMethod = PatchConstants.EftTypes
 				.Single(x => x.BaseType == typeof(CertificateHandler))

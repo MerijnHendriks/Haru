@@ -6,7 +6,7 @@ namespace Haru.Modules.Patches
 {
     public class UnityWebRequestPatch : PostfixPatch
     {
-        public UnityWebRequestPatch() : base("unitywebrequest.patches.haru")
+        public UnityWebRequestPatch() : base("com.haru.unitywebrequest")
         {
             OriginalMethod = typeof(UnityWebRequestTexture)
                 .GetMethod(nameof(UnityWebRequestTexture.GetTexture), new[] { typeof(string) });

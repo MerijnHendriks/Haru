@@ -11,8 +11,8 @@ namespace Haru.Modules
             var patches = new List<APatch>()
             {
                 new BattlEyePatch(),
-                new CheckMultiplePatch(),
-                new CheckSinglePatch(),
+                new VerifyMultiplePatch(),
+                new VerifySinglePatch(),
                 new CertificatePatch(),
                 new UnityWebRequestPatch(),
                 new WebSocketPatch()

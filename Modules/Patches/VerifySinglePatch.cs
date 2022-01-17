@@ -6,9 +6,9 @@ using Haru.Modules.Reflection;
 
 namespace Haru.Modules.Patches
 {
-    public class CheckSinglePatch : PrefixPatch
+    public class VerifySinglePatch : PrefixPatch
     {
-        public CheckSinglePatch() : base("consistencysingle.patches.haru")
+        public VerifySinglePatch() : base("com.haru.verifysingle")
         {
             OriginalMethod = PatchConstants.FilesCheckerTypes
                 .Single(x => x.Name == "ConsistencyController")
