@@ -13,7 +13,7 @@
   <ItemGroup>
     <PackageReference Include="Lib.Harmony" Version="2.2.0" />
     <PackageReference Include="Microsoft.NETFramework.ReferenceAssemblies" Version="1.0.2" ExcludeAssets="runtime" PrivateAssets="All" />
-    <PackageReference Include="NLog" Version="4.7.13" ExcludeAssets="runtime" />
+    <PackageReference Include="NLog" Version="4.7.13" ExcludeAssets="runtime" PrivateAssets="All" />
   </ItemGroup>
 
   <ItemGroup>
