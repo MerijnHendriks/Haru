@@ -6,7 +6,7 @@ namespace Haru.Modules.Reflection
 {
     public abstract class APatch
     {
-        private readonly Harmony Harmony;
+        protected readonly Harmony Harmony;
         protected MethodBase OriginalMethod;
 
         protected APatch(string name)
