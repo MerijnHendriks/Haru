@@ -5,7 +5,8 @@
 		}
 	],
 	"settings": {
-		"window.title": "Haru Project"
+		"window.title": "Haru Project",
+		"editor.formatOnType": true
 	},
 	"extensions": {
 		"recommendations": [
