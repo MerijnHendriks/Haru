@@ -3,6 +3,7 @@ using System.Reflection;
 using System.Threading.Tasks;
 using FilesChecker;
 using Haru.Modules.Models;
+using Haru.Modules.Providers;
 using Haru.Modules.Reflection;
 
 namespace Haru.Modules.Patches
@@ -25,7 +26,7 @@ namespace Haru.Modules.Patches
         /// <returns>Original method</returns>
         protected override MethodBase GetOriginalMethod()
         {
-            return TypeProvider.Get("FILESCHECKER")
+            return TypeProvider.Instance.Get("FILESCHECKER")
                 .Single(x => x.Name == "ConsistencyController")
                 .GetMethods().Single(x => x.Name == "EnsureConsistencySingle" && x.ReturnType == typeof(Task<ICheckResult>));
         }

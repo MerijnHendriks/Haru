@@ -1,6 +1,7 @@
 using System;
 using System.Linq;
 using System.Reflection;
+using Haru.Modules.Providers;
 using Haru.Modules.Reflection;
 
 namespace Haru.Modules.Patches
@@ -23,7 +24,7 @@ namespace Haru.Modules.Patches
         /// <returns>Original method</returns>
         protected override MethodBase GetOriginalMethod()
         {
-            var types = TypeProvider.Get("EFT");
+            var types = TypeProvider.Instance.Get("EFT");
             var targetInterface = types.Single(x => x.IsInterface && x == typeof(IConnectionHandler));
 
             return types

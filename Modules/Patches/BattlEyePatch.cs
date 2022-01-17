@@ -1,6 +1,7 @@
 using System.Linq;
 using System.Reflection;
 using System.Threading.Tasks;
+using Haru.Modules.Providers;
 using Haru.Modules.Reflection;
 
 namespace Haru.Modules.Patches
@@ -27,7 +28,7 @@ namespace Haru.Modules.Patches
         {
             var methodName = "RunValidation";
             var flags = Flags.PublicInstance;
-            var types = TypeProvider.Get("EFT"); 
+            var types = TypeProvider.Instance.Get("EFT"); 
             var type = types.Single(x => x.GetMethod(methodName, flags) != null);
 
             _succeed = type.GetFields().Single(x => x.GetType() == typeof(bool));

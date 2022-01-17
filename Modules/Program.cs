@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using EFT;
 using FilesChecker;
 using Haru.Modules.Patches;
+using Haru.Modules.Providers;
 using Haru.Modules.Reflection;
 
 namespace Haru.Modules
@@ -25,8 +26,9 @@ namespace Haru.Modules
         /// </summary>
         private static void LoadTypes()
         {
-            TypeProvider.Add("EFT", typeof(AbstractGame).Assembly.GetTypes());
-            TypeProvider.Add("FILESCHECKER", typeof(ICheckResult).Assembly.GetTypes());
+            var types = TypeProvider.Instance;
+            types.Add("EFT", typeof(AbstractGame).Assembly.GetTypes());
+            types.Add("FILESCHECKER", typeof(ICheckResult).Assembly.GetTypes());
         }
 
         /// <summary>
@@ -34,20 +36,18 @@ namespace Haru.Modules
         /// </summary>
         private static void LoadPatches()
         {
-            var patches = new List<APatch>()
-            {
-                new BattlEyePatch(),
-                new VerifyMultiplePatch(),
-                new VerifySinglePatch(),
-                new CertificatePatch(),
-                new UnityWebRequestPatch(),
-                new WebSocketPatch()
-            };
+            var patches = PatchProvider.Instance;
 
-            foreach (var patch in patches)
-            {
-                patch.Enable();
-            }
+            // add patches
+            patches.Add(new BattlEyePatch());
+            patches.Add(new VerifyMultiplePatch());
+            patches.Add(new VerifySinglePatch());
+            patches.Add(new CertificatePatch());
+            patches.Add(new UnityWebRequestPatch());
+            patches.Add(new WebSocketPatch());
+
+            // enable patches
+            patches.EnableAll();
         }
     }
 }
