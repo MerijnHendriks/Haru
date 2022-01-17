@@ -43,7 +43,7 @@ namespace Haru.Modules.Reflection
             }
             catch (Exception ex)
             {
-                throw new Exception($"{type.ToString()}:", ex);
+                throw new Exception($"{type}:", ex);
             }
         }
     }

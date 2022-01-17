@@ -12,8 +12,9 @@ namespace Haru.Modules.Patches
         public BattlEyePatch() : base("com.haru.battleye")
         {
             var methodName = "RunValidation";
-            var flags = PatchConstants.PublicFlags;
-            var type = PatchConstants.EftTypes.Single(x => x.GetMethod(methodName, flags) != null);
+            var flags = Flags.PublicInstance;
+            var types = TypeProvider.Get("EFT"); 
+            var type = types.Single(x => x.GetMethod(methodName, flags) != null);
 
             _succeed = type.GetFields().Single(x => x.GetType() == typeof(bool));
             OriginalMethod = type.GetMethod(methodName, flags);

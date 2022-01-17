@@ -10,7 +10,7 @@ namespace Haru.Modules.Patches
     {
         public VerifyMultiplePatch() : base("com.haru.verifymultiple")
         {
-            OriginalMethod = PatchConstants.FilesCheckerTypes
+            OriginalMethod = TypeProvider.Get("FILESCHECKER")
                 .Single(x => x.Name == "ConsistencyController")
                 .GetMethods().Single(x => x.Name == "EnsureConsistency" && x.ReturnType == typeof(Task<ICheckResult>));
         }

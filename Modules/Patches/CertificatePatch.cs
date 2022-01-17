@@ -8,9 +8,9 @@ namespace Haru.Modules.Patches
 	{
 		public CertificatePatch() : base("com.haru.certificate")
 		{
-			OriginalMethod = PatchConstants.EftTypes
+			OriginalMethod = TypeProvider.Get("EFT")
 				.Single(x => x.BaseType == typeof(CertificateHandler))
-				.GetMethod("ValidateCertificate", PatchConstants.PrivateFlags);
+				.GetMethod("ValidateCertificate", Flags.PrivateInstance);
 		}
 
 		protected static bool Patch(ref bool __result)

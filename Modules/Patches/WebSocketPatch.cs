@@ -8,12 +8,12 @@ namespace Haru.Modules.Patches
     {
         public WebSocketPatch() : base("com.haru.websocket")
         {
-            var types = PatchConstants.EftTypes;
+            var types = TypeProvider.Get("EFT");
             var targetInterface = types.Single(x => x.IsInterface && x == typeof(IConnectionHandler));
 
             OriginalMethod = types
                 .Single(x => targetInterface.IsAssignableFrom(x) && x.IsAbstract && !x.IsInterface)
-                .GetMethods(PatchConstants.PrivateFlags).Single(x => x.ReturnType == typeof(Uri));
+                .GetMethods(Flags.PrivateInstance).Single(x => x.ReturnType == typeof(Uri));
         }
 
         protected static Uri Patch(Uri __instance)
