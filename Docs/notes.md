@@ -7,10 +7,6 @@
 
 ## Todo
 
-- Launcher
-  - [ ] implement bytepatcher
-- Modules
-  - [ ] initial patches
 - Server
   - [ ] update diagrams
     - [ ] build (server)
