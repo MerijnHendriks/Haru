@@ -5,12 +5,22 @@ using Haru.Modules.Reflection;
 
 namespace Haru.Modules.Patches
 {
+    /// <summary>
+    /// Patch to use non-ssl websocket connection
+    /// </summary>
     public class WebSocketPatch : PostfixPatch
     {
+        /// <summary>
+        /// Constructor
+        /// </summary>
         public WebSocketPatch() : base("com.haru.websocket")
         {
         }
 
+        /// <summary>
+        /// Get the original method from lookup pattern
+        /// </summary>
+        /// <returns>Original method</returns>
         protected override MethodBase GetOriginalMethod()
         {
             var types = TypeProvider.Get("EFT");
@@ -21,6 +31,9 @@ namespace Haru.Modules.Patches
                 .GetMethods(Flags.PrivateInstance).Single(x => x.ReturnType == typeof(Uri));
         }
 
+        /// <summary>
+        /// Patch the original method
+        /// </summary>
         protected static Uri Patch(object __instance)
         {
             var uri = (Uri)__instance;

@@ -3,15 +3,24 @@ using System.Diagnostics;
 
 namespace Haru.Launcher
 {
+    /// <summary>
+    /// Game process manager
+    /// </summary>
     public class GameProcess
     {
         private Process process;
 
+        /// <summary>
+        /// Constructor
+        /// </summary>
         public GameProcess()
         {
             process = null;
         }
 
+        /// <summary>
+        /// Start the game
+        /// </summary>
         public void Start()
         {
             // todo: move this into a config
@@ -27,7 +36,7 @@ namespace Haru.Launcher
                 $"-config={{\"backendurl\":\"{url}\",\"version\":\"live\"}}"
             };
 
-            // start the game
+            // start the game with high priority
             var info = new ProcessStartInfo()
             {
                 FileName = "EscapeFromTarkov.exe",
@@ -42,6 +51,9 @@ namespace Haru.Launcher
             process.Exited += OnExitChildProcess;
         }
 
+        /// <summary>
+        /// Terminate the game
+        /// </summary>
         public void Terminate()
         {
             if (process == null)
@@ -54,6 +66,9 @@ namespace Haru.Launcher
             process.WaitForExit();
         }
 
+        /// <summary>
+        /// When the game closes
+        /// </summary>
         private void OnExitChildProcess(object sender, EventArgs e)
         {
             Environment.Exit(0);

@@ -5,14 +5,24 @@ using Haru.Modules.Reflection;
 
 namespace Haru.Modules.Patches
 {
+    /// <summary>
+    /// Patch to disable battleye
+    /// </summary>
     public class BattlEyePatch : PrefixPatch
     {
         private static FieldInfo _succeed;
 
+        /// <summary>
+        /// Constructor
+        /// </summary>
         public BattlEyePatch() : base("com.haru.battleye")
         {
         }
 
+        /// <summary>
+        /// Get the original method from lookup pattern
+        /// </summary>
+        /// <returns>Original method</returns>
         protected override MethodBase GetOriginalMethod()
         {
             var methodName = "RunValidation";
@@ -24,6 +34,10 @@ namespace Haru.Modules.Patches
             return type.GetMethod(methodName, flags);
         }
 
+        /// <summary>
+        /// Patch the original method
+        /// </summary>
+        /// <returns>Execute original method?</returns>
         protected static bool Patch(ref Task __result, object __instance)
         {
             _succeed.SetValue(__instance, true);

@@ -2,6 +2,9 @@ using System.Reflection;
 
 namespace Haru.Modules.Reflection
 {
+    /// <summary>
+    /// Reflection binding flags
+    /// </summary>
     public static class Flags
     {
         public const BindingFlags PrivateInstance = BindingFlags.NonPublic | BindingFlags.Instance | BindingFlags.DeclaredOnly;
