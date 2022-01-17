@@ -4,8 +4,8 @@
     <TargetFramework>net6.0</TargetFramework>
     <ImplicitUsings>disable</ImplicitUsings>
     <Nullable>disable</Nullable>
-	<OutputType>Exe</OutputType>
-	<ApplicationIcon>icon.ico</ApplicationIcon>
+	  <OutputType>Exe</OutputType>
+	  <ApplicationIcon>icon.ico</ApplicationIcon>
     <StartupObject>Haru.Launcher.Program</StartupObject>
     <RootNamespace>Haru.Launcher</RootNamespace>
   </PropertyGroup>
