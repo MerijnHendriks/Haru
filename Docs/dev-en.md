@@ -1,7 +1,5 @@
-<div style="text-align:right;">
-  <a href="dev-en.md">EN</a>
-  <a href="dev-cn.md">中文</a>
-</div>
+[EN](dev-en.md)
+[中文](dev-cn.md)
 
 # Technical Documentation
 

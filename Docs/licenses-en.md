@@ -1,7 +1,5 @@
-<div style="text-align:right;">
-  <a href="licenses-en.md">EN</a>
-  <a href="licenses-cn.md">中文</a>
-</div>
+[EN](licenses-en.md)
+[中文](licenses-cn.md)
 
 # Licenses
 

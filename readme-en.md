@@ -1,7 +1,5 @@
-<div style="text-align:right;">
-  <a href="README-en.md">EN</a>
-  <a href="README-cn.md">中文</a>
-</div>
+[EN](readme-en.md)
+[中文](readme-cn.md)
 
 # Haru
 
