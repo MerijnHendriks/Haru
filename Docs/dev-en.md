@@ -68,37 +68,34 @@ Solution Explorer > Haru > Restore NuGet Packages
 
 ## Solution
 
-### Projects
-
-**Project** | **Description**
------------ | --------------------------------------------------------
-Launcher    | Minimal CLI-based game launcher
-Modules     | Runtime patches to allow the game to reach the main menu
-Server      | Minimal server emulator
-
-**Project**     | **Description**
---------------- | --------------------------------------------------------
-zlib.net        | Zlib library used by EFT without their modifications
-websocket-sharp | Minimal websocket server
-
 ### Configuration
 
 #### Build system
 
 `dotnet` is used exclusively to ensure cross-platform compatability and support
-for multiple IDE's (vscode, vs2022).
+for multiple IDE's (Visual Studio Code, Visual Studio 2022).
 
-## Projects
+### Projects
 
-### Modules
+#### Launcher
 
-#### Hook
+Minimal CLI-based game launcher
+
+#### Modules
+
+Runtime patches to allow the game to reach the main menu
+
+##### Hook
 
 The hooking method is NLog's target system. This means that we fake being an
 NLog logger extension so NLog automatically loads the assembly with the patches
 and executes it.
 
-#### patching
+Both BePinEx and MelonLoader were considered, but the NLog hook has my
+preference due to having the least dependencies, requiring less files and the
+project setup is simpler.
+
+##### Patching
 
 Harmony 2.0 is used for runtime patching. `Haru.Modules.Reflection` contains a
 wrapper around this library to make it easier to use.
@@ -108,11 +105,23 @@ wrapper around this library to make it easier to use.
 - Patches (like `BattleyePatch`) specify the original method and what needs
   to be patched in.
 
-#### Build configuration
+##### Build configuration
 
 In order to build the project on Linux and OSX without requiring mono, the
 `net472` references are obtained from NuGet using the
 `Microsoft.NETFramework.ReferenceAssemblies` package.
+
+#### Server
+
+Minimal server emulator
+
+#### zlib.net
+
+Zlib library used by EFT without their modifications
+
+#### websocket-sharp
+
+Minimal websocket server for handling websockets in EFT
 
 ## Programming conventions
 
