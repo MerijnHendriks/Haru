@@ -1,4 +1,5 @@
 using System.Linq;
+using System.Reflection;
 using System.Threading.Tasks;
 using FilesChecker;
 using Haru.Modules.Models;
@@ -10,7 +11,11 @@ namespace Haru.Modules.Patches
     {
         public VerifySinglePatch() : base("com.haru.verifysingle")
         {
-            OriginalMethod = TypeProvider.Get("FILESCHECKER")
+        }
+
+        protected override MethodBase GetOriginalMethod()
+        {
+            return TypeProvider.Get("FILESCHECKER")
                 .Single(x => x.Name == "ConsistencyController")
                 .GetMethods().Single(x => x.Name == "EnsureConsistencySingle" && x.ReturnType == typeof(Task<ICheckResult>));
         }

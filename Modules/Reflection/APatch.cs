@@ -7,13 +7,13 @@ namespace Haru.Modules.Reflection
     public abstract class APatch
     {
         protected readonly Harmony Harmony;
-        protected MethodBase OriginalMethod;
 
         protected APatch(string name)
         {
             Harmony = new Harmony(name);
         }
 
+        protected abstract MethodBase GetOriginalMethod();
         protected abstract void Add(MethodBase original, HarmonyMethod patch);
 
         public void Enable()
@@ -22,24 +22,22 @@ namespace Haru.Modules.Reflection
 
             try
             {
-                // check original method
-                if (OriginalMethod == null)
+                var originalMethod = GetOriginalMethod();
+                var patchMethod = type.GetMethod("Patch", Flags.PrivateStatic);
+
+                // validate
+                if (originalMethod == null)
                 {
-                    throw new InvalidOperationException("OriginalMethod is null");
+                    throw new InvalidOperationException($"GetOrignalMethod returned null");
                 }
 
-                // get patch method
-                var mi = type.GetMethod("Patch", BindingFlags.Static | BindingFlags.NonPublic | BindingFlags.DeclaredOnly);
-
-                if (mi == null)
+                if (patchMethod == null)
                 {
-                    throw new InvalidOperationException($"A protected static Patch method must exist inside {type.ToString()}");
+                    throw new InvalidOperationException($"Method Patch must exist");
                 }
-
-                var PatchMethod = new HarmonyMethod(mi);
                 
                 // patch original method
-                Add(OriginalMethod, PatchMethod);
+                Add(originalMethod, new HarmonyMethod(patchMethod));
             }
             catch (Exception ex)
             {

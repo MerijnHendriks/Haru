@@ -1,5 +1,6 @@
 using System;
 using System.Linq;
+using System.Reflection;
 using Haru.Modules.Reflection;
 
 namespace Haru.Modules.Patches
@@ -8,17 +9,22 @@ namespace Haru.Modules.Patches
     {
         public WebSocketPatch() : base("com.haru.websocket")
         {
+        }
+
+        protected override MethodBase GetOriginalMethod()
+        {
             var types = TypeProvider.Get("EFT");
             var targetInterface = types.Single(x => x.IsInterface && x == typeof(IConnectionHandler));
 
-            OriginalMethod = types
+            return types
                 .Single(x => targetInterface.IsAssignableFrom(x) && x.IsAbstract && !x.IsInterface)
                 .GetMethods(Flags.PrivateInstance).Single(x => x.ReturnType == typeof(Uri));
         }
 
-        protected static Uri Patch(Uri __instance)
+        protected static Uri Patch(object __instance)
         {
-            return new Uri(__instance.ToString().Replace("wss:", "ws:"));
+            var uri = (Uri)__instance;
+            return new Uri(uri.ToString().Replace("wss:", "ws:"));
         }
     }
 }
