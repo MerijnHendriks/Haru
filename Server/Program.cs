@@ -21,6 +21,7 @@ namespace Haru.Server
         /// </summary>
         public static void Main()
         {
+            Console.Title = "Haru Server";
             Console.WriteLine("Hello, World!");
             Console.ReadKey();
         }

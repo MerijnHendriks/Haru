@@ -25,6 +25,7 @@ namespace Haru.Launcher
         /// </summary>
         static void Main()
         {
+            Console.Title = "Haru Launcher";
             game = new GameProcess();
             game.Start();
         }
