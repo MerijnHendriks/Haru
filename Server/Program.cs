@@ -13,6 +13,7 @@ namespace Haru.Server
         /// </summary>
         static Program()
         {
+            Console.Title = "Haru Server";
             AppDomain.CurrentDomain.UnhandledException += OnException;
         }
 
@@ -21,7 +22,6 @@ namespace Haru.Server
         /// </summary>
         public static void Main()
         {
-            Console.Title = "Haru Server";
             Console.WriteLine("Hello, World!");
             Console.ReadKey();
         }

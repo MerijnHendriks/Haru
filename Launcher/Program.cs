@@ -1,4 +1,6 @@
 ﻿using System;
+using Haru.Launcher.Processes;
+using Haru.Launcher.Providers;
 using Haru.Shared.Utils;
 
 namespace Haru.Launcher
@@ -8,16 +10,15 @@ namespace Haru.Launcher
     /// </summary>
     class Program
     {
-        private static GameProcess game;
-
         /// <summary>
         /// Constructor
         /// </summary>
         static Program()
-        { 
+        {
+            Console.Title = "Haru Launcher";
+            AppDomain.CurrentDomain.UnhandledException += OnException;
             AppDomain.CurrentDomain.DomainUnload += OnExit;
             AppDomain.CurrentDomain.ProcessExit += OnExit;
-            AppDomain.CurrentDomain.UnhandledException += OnException;
         }
 
         /// <summary>
@@ -25,9 +26,12 @@ namespace Haru.Launcher
         /// </summary>
         static void Main()
         {
-            Console.Title = "Haru Launcher";
-            game = new GameProcess();
-            game.Start();
+            var processes = ProcessProvider.Instance;
+
+            // start processes
+            processes.Add<ServerProcess>("SERVER");
+            processes.Add<GameProcess>("GAME");
+            processes.StartAll();
         }
 
         /// <summary>
@@ -35,7 +39,7 @@ namespace Haru.Launcher
         /// </summary>
         private static void OnExit(object sender, EventArgs e)
         {
-            game.Terminate();
+            ProcessProvider.Instance.TerminateAll();
         }
 
         /// <summary>
@@ -45,7 +49,6 @@ namespace Haru.Launcher
         {
             var ex = (Exception)args.ExceptionObject;
             Log.Exception(ex);
-            game.Terminate();
         }
     }
 }
