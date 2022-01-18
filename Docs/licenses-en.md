@@ -1,5 +1,4 @@
-[EN](licenses-en.md)
-[中文](licenses-cn.md)
+[EN](licenses-en.md) | [中文](licenses-cn.md)
 
 # Licenses
 

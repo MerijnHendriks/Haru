@@ -1,5 +1,4 @@
-[EN](dev-en.md)
-[中文](dev-cn.md)
+[EN](dev-en.md) | [中文](dev-cn.md)
 
 # Technical Documentation
 
