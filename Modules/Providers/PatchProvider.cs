@@ -28,13 +28,14 @@ namespace Haru.Modules.Providers
         {
             Entries.Add(name, patch);
         }
-
+ 
         /// <summary>
         /// Add patch
         /// </summary>
-        /// <param name="patch">Patch</param>
-        public void Add(APatch patch)
+        /// <typeparam name="T">Patch</typeparam>
+        public void Add<T>() where T : APatch, new()
         {
+            var patch = new T();
             Entries.Add(patch.Name, patch);
         }
 

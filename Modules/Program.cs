@@ -39,12 +39,12 @@ namespace Haru.Modules
             var patches = PatchProvider.Instance;
 
             // add patches
-            patches.Add(new BattlEyePatch());
-            patches.Add(new VerifyMultiplePatch());
-            patches.Add(new VerifySinglePatch());
-            patches.Add(new CertificatePatch());
-            patches.Add(new TextureRequestPatch());
-            patches.Add(new WebSocketPatch());
+            patches.Add<BattlEyePatch>();
+            patches.Add<VerifyMultiplePatch>();
+            patches.Add<VerifySinglePatch>();
+            patches.Add<CertificatePatch>();
+            patches.Add<TextureRequestPatch>();
+            patches.Add<WebSocketPatch>();
 
             // enable patches
             patches.EnableAll();
