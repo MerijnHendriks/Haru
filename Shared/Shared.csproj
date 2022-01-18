@@ -6,8 +6,12 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Vendor\websocket-sharp\websocket-sharp.csproj" />
-    <ProjectReference Include="..\Vendor\zlib.net\zlib.net.csproj" />
+    <Reference Include="ComponentAce.Compression.Libs.zlib">
+      <HintPath>../Vendor/zlib.net/bin/Release/netstandard2.0/zlib.net.dll</HintPath>
+    </Reference>
+    <Reference Include="WebSocketSharp">
+      <HintPath>../Vendor/websocket-sharp/bin/Release/netstandard2.0/websocket-sharp.dll</HintPath>
+    </Reference>
   </ItemGroup>
 
 </Project>

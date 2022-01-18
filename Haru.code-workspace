@@ -36,6 +36,12 @@
 				"problemMatcher": ["$msCompile"]
 			},
 			{
+				"label": "setup: shared",
+				"type": "shell",
+				"command": "dotnet restore Shared/Shared.csproj",
+				"problemMatcher": ["$msCompile"]
+			},
+			{
 				"label": "build: launcher",
 				"type": "shell",
 				"linux": {
@@ -50,9 +56,9 @@
 				"problemMatcher": ["$msCompile"]
 			},
 			{
-				"label": "setup: modules",
+				"label": "build: modules",
 				"type": "shell",
-				"command": "dotnet restore Modules/Modules.csproj",
+				"command": "dotnet build Modules/Modules.csproj --configuration Release",
 				"problemMatcher": ["$msCompile"]
 			},
 			{
@@ -70,19 +76,28 @@
 				"problemMatcher": ["$msCompile"]
 			},
 			{
-				"label": "build: modules",
+				"label": "build: shared",
 				"type": "shell",
-				"command": "dotnet build Modules/Modules.csproj --configuration Release",
+				"command": "dotnet build Shared/Shared.csproj --configuration Release",
+				"problemMatcher": ["$msCompile"]
+			},
+			{
+				"label": "build: vendor",
+				"type": "shell",
+				"command": "dotnet build Vendor/Vendor.sln --configuration Release",
 				"problemMatcher": ["$msCompile"]
 			},
 			{
 				"label": "setup",
 				"problemMatcher": [],
 				"dependsOn": [
-					"setup: server",
+					"build: vendor",
+					"setup: shared",
+					"setup: launcher",
 					"setup: modules",
-					"setup: launcher"
-				]
+					"setup: server"
+				],
+				"dependsOrder": "sequence"
 			},
 			{
 				"label": "build",
@@ -92,10 +107,13 @@
 					"isDefault": true
 				},
 				"dependsOn": [
-					"build: server",
+					"build: vendor",
+					"build: shared",
+					"build: launcher",
 					"build: modules",
-					"build: launcher"
-				]
+					"build: server"
+				],
+				"dependsOrder": "sequence"
 			}
 		]
 	},

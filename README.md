@@ -1,5 +1,5 @@
-[EN](readme-en.md)
-[中文](readme-cn.md)
+[EN](README.md)
+[中文](README-cn.md)
 
 # Haru
 
