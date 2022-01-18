@@ -62,9 +62,9 @@ namespace Haru.Modules.Providers
         /// </summary>
         public void EnableAll()
         {
-            foreach (var patch in Entries.Values)
+            foreach (var name in Entries.Keys)
             {
-                patch.Enable();
+                Enable(name);
             }
         }
     }

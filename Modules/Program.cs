@@ -17,36 +17,20 @@ namespace Haru.Modules
         /// </summary>
         public static void Main()
         {
-            LoadTypes();
-            LoadPatches();            
-        }
-
-        /// <summary>
-        /// Get all types of used assemblies
-        /// </summary>
-        private static void LoadTypes()
-        {
             var types = TypeProvider.Instance;
-            types.Add("EFT", typeof(AbstractGame).Assembly.GetTypes());
-            types.Add("FILESCHECKER", typeof(ICheckResult).Assembly.GetTypes());
-        }
-
-        /// <summary>
-        /// Apply all patches
-        /// </summary>
-        private static void LoadPatches()
-        {
             var patches = PatchProvider.Instance;
 
-            // add patches
+            // add types
+            types.Add("EFT", typeof(AbstractGame).Assembly.GetTypes());
+            types.Add("FILESCHECKER", typeof(ICheckResult).Assembly.GetTypes());
+
+            // load patches
             patches.Add<BattlEyePatch>();
             patches.Add<VerifyMultiplePatch>();
             patches.Add<VerifySinglePatch>();
             patches.Add<CertificatePatch>();
             patches.Add<TextureRequestPatch>();
             patches.Add<WebSocketPatch>();
-
-            // enable patches
             patches.EnableAll();
         }
     }
