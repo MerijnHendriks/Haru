@@ -34,37 +34,19 @@ to obtain these from your EFT client. These assemblies are located at
 `EscapeFromTarkov_Data/Managed/`. See `Modules/Modules.csproj` where the
 referenced assemblies need to be placed.
 
-### Visual Studio Code
-
-#### Requirements
+### Requirements
 
 - dotnet 6.0 sdk
 - visual studio code
   - ms-dotnettools.csharp
 
-#### Setup
+### Setup
 
 Terminal > Run Task > setup
 
-#### Build
+### Build
 
 Terminal > Run Build Task
-
-### Visual Studio 2022
-
-#### Requirements
-
-- dotnet desktop workload (no optionals)
-
-#### Setup
-
-Solution Explorer > Haru > Restore NuGet Packages
-
-#### Build
-
-1. Solution Explorer > Launcher > Publish
-2. Solution Explorer > Modules > Build
-3. Solution Explorer > Server > Publish
 
 ## Solution
 
