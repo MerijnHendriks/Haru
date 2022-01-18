@@ -1,23 +1,19 @@
 using System;
 using FilesChecker;
-using Haru.Shared.Generics;
 
 namespace Haru.Modules.Models
 {
     /// <summary>
     /// File checker result that always returns sucess
     /// </summary>
-    public class FileCheckerResult : Singleton<FileCheckerResult>, ICheckResult
+    public struct FileCheckerResult : ICheckResult
     {
-        public TimeSpan ElapsedTime { get; private set; }
-        public Exception Exception { get; private set; }
+        public TimeSpan ElapsedTime { get; }
+        public Exception Exception { get; }
 
-        /// <summary>
-        /// Constructor
-        /// </summary>
-        public FileCheckerResult()
+        public FileCheckerResult(TimeSpan elapsedTime = default)
         {
-            ElapsedTime = new TimeSpan();
+            ElapsedTime = elapsedTime;
             Exception = null;
         }
     }

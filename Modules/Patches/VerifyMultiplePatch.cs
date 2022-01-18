@@ -37,7 +37,7 @@ namespace Haru.Modules.Patches
         /// <returns>Execute original method?</returns>
         protected static bool Patch(ref object __result)
         {
-            __result = Task.FromResult<ICheckResult>(FileCheckerResult.Instance);
+            __result = Task.FromResult<ICheckResult>(default(FileCheckerResult));
             return false;
         }
     }
