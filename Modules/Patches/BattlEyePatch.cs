@@ -26,13 +26,11 @@ namespace Haru.Modules.Patches
         /// <returns>Original method</returns>
         protected override MethodBase GetOriginalMethod()
         {
-            var methodName = "RunValidation";
-            var flags = Flags.PublicInstance;
             var types = TypeProvider.Instance.Get("EFT"); 
-            var type = types.Single(x => x.GetMethod(methodName, flags) != null);
+            var type = types.Single(x => x.GetMethod("RunValidation", Flags.PublicInstance) != null);
 
             _succeed = type.GetFields().Single(x => x.GetType() == typeof(bool));
-            return type.GetMethod(methodName, flags);
+            return type.GetMethod("RunValidation", Flags.PublicInstance);
         }
 
         /// <summary>

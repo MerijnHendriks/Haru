@@ -5,7 +5,7 @@ using Haru.Shared.Generics;
 namespace Haru.Launcher.Providers
 {
     /// <summary>
-    /// Type provider
+    /// Process provider
     /// </summary>
     public class ProcessProvider : Singleton<ProcessProvider>, IProvider<AProcess>
     {
@@ -22,7 +22,7 @@ namespace Haru.Launcher.Providers
         /// <summary>
         /// Add process
         /// </summary>
-        /// <param name="name">Identifier</param>
+        /// <param name="name">Name</param>
         /// <param name="process">Process</param>
         public void Add(string name, AProcess process)
         {
@@ -32,7 +32,7 @@ namespace Haru.Launcher.Providers
         /// <summary>
         /// Add process
         /// </summary>
-        /// <param name="name">Identifier</param>
+        /// <param name="name">Name</param>
         /// <typeparam name="T">Process</typeparam>
         public void Add<T>(string name) where T : AProcess, new()
         {
@@ -43,7 +43,7 @@ namespace Haru.Launcher.Providers
         /// <summary>
         /// Get process
         /// </summary>
-        /// <param name="name">Identifier</param>
+        /// <param name="name">Name</param>
         /// <returns>Types</returns>
         public AProcess Get(string name)
         {
@@ -53,7 +53,7 @@ namespace Haru.Launcher.Providers
         /// <summary>
         /// Start process
         /// </summary>
-        /// <param name="name">Identifier</param>
+        /// <param name="name">Name</param>
         public void Start(string name)
         {
             Entries[name].Start();
@@ -73,7 +73,7 @@ namespace Haru.Launcher.Providers
         /// <summary>
         /// Terminate process
         /// </summary>
-        /// <param name="name">Identifier</param>
+        /// <param name="name">Name</param>
         public void Terminate(string name)
         {
             Entries[name].Terminate();

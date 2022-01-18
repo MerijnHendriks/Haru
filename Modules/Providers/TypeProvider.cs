@@ -22,7 +22,7 @@ namespace Haru.Modules.Providers
         /// <summary>
         /// Add types
         /// </summary>
-        /// <param name="name">Identifier</param>
+        /// <param name="name">Name</param>
         /// <param name="types">Types</param>
         public void Add(string name, Type[] types)
         {
@@ -32,7 +32,7 @@ namespace Haru.Modules.Providers
         /// <summary>
         /// Get types
         /// </summary>
-        /// <param name="name">Identifier</param>
+        /// <param name="name">Name</param>
         /// <returns>Types</returns>
         public Type[] Get(string name)
         {

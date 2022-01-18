@@ -11,6 +11,9 @@ namespace Haru.Modules.Models
         public TimeSpan ElapsedTime { get; }
         public Exception Exception { get; }
 
+        /// <summary>
+        /// Constructor
+        /// </summary>
         public FileCheckerResult(TimeSpan elapsedTime = default)
         {
             ElapsedTime = elapsedTime;

@@ -1,9 +1,7 @@
-using System.Collections.Generic;
 using EFT;
 using FilesChecker;
 using Haru.Modules.Patches;
 using Haru.Modules.Providers;
-using Haru.Modules.Reflection;
 
 namespace Haru.Modules
 {
