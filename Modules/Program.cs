@@ -43,7 +43,7 @@ namespace Haru.Modules
             patches.Add(new VerifyMultiplePatch());
             patches.Add(new VerifySinglePatch());
             patches.Add(new CertificatePatch());
-            patches.Add(new UnityWebRequestPatch());
+            patches.Add(new TextureRequestPatch());
             patches.Add(new WebSocketPatch());
 
             // enable patches

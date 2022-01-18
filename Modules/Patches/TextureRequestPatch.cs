@@ -8,12 +8,12 @@ namespace Haru.Modules.Patches
     /// <summary>
     /// Patch to make certificates always successfully validate
     /// </summary>
-    public class UnityWebRequestPatch : PostfixPatch
+    public class TextureRequestPatch : PostfixPatch
     {
         /// <summary>
         /// Constructor
         /// </summary>
-        public UnityWebRequestPatch() : base("com.haru.unitywebrequest")
+        public TextureRequestPatch() : base("com.haru.texturerequest")
         {
         }
 
@@ -32,7 +32,7 @@ namespace Haru.Modules.Patches
         /// </summary>
         protected static void Patch(ref UnityWebRequest __result)
         {
-            __result.certificateHandler = CertificateResult.Instance;
+            __result.certificateHandler = new CertificateResult();
             __result.disposeCertificateHandlerOnDispose = false;
         }
     }

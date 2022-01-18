@@ -1,21 +1,32 @@
+using System.Collections.Generic;
 using Haru.Modules.Reflection;
 using Haru.Shared.Generics;
 
 namespace Haru.Modules.Providers
 {
     /// <summary>
-    /// Type provider
+    /// Patch provider
     /// </summary>
-    public class PatchProvider : Singleton<PatchProvider>
+    public class PatchProvider : Singleton<PatchProvider>, IProvider<APatch>
     {
-        private readonly Provider<APatch> _provider;
+        public Dictionary<string, APatch> Entries { get; }
 
         /// <summary>
         /// Constructor
         /// </summary>
         public PatchProvider()
         {
-            _provider = new Provider<APatch>();
+            Entries = new Dictionary<string, APatch>();
+        }
+
+        /// <summary>
+        /// Add patch
+        /// </summary>
+        /// <param name="name">Name</param>
+        /// <param name="patch">Patch</param>
+        public void Add(string name, APatch patch)
+        {
+            Entries.Add(name, patch);
         }
 
         /// <summary>
@@ -24,7 +35,16 @@ namespace Haru.Modules.Providers
         /// <param name="patch">Patch</param>
         public void Add(APatch patch)
         {
-            _provider.Add(patch.Name, patch);
+            Entries.Add(patch.Name, patch);
+        }
+
+        /// <summary>
+        /// Get patch
+        /// </summary>
+        /// <param name="patch">Patch</param>
+        public APatch Get(string name)
+        {
+            return Entries[name];
         }
 
         /// <summary>
@@ -33,7 +53,7 @@ namespace Haru.Modules.Providers
         /// <param name="name">Name</param>
         public void Enable(string name)
         {
-            _provider.Entries[name].Enable();
+            Entries[name].Enable();
         }
 
         /// <summary>
@@ -41,7 +61,7 @@ namespace Haru.Modules.Providers
         /// </summary>
         public void EnableAll()
         {
-            foreach (var patch in _provider.Entries.Values)
+            foreach (var patch in Entries.Values)
             {
                 patch.Enable();
             }

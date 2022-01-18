@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using Haru.Shared.Generics;
 
 namespace Haru.Modules.Providers
@@ -6,16 +7,16 @@ namespace Haru.Modules.Providers
     /// <summary>
     /// Type provider
     /// </summary>
-    public class TypeProvider : Singleton<TypeProvider>
+    public class TypeProvider : Singleton<TypeProvider>, IProvider<Type[]>
     {
-        private readonly Provider<Type[]> _provider;
+        public Dictionary<string, Type[]> Entries { get; }
 
         /// <summary>
         /// Constructor
         /// </summary>
         public TypeProvider()
         {
-            _provider = new Provider<Type[]>();
+            Entries = new Dictionary<string, Type[]>();
         }
 
         /// <summary>
@@ -25,7 +26,7 @@ namespace Haru.Modules.Providers
         /// <param name="types">Types</param>
         public void Add(string name, Type[] types)
         {
-            _provider.Add(name, types);
+            Entries.Add(name, types);
         }
 
         /// <summary>
@@ -35,7 +36,7 @@ namespace Haru.Modules.Providers
         /// <returns>Types</returns>
         public Type[] Get(string name)
         {
-            return _provider.Get(name);
+            return Entries[name];
         }
     }
 }
